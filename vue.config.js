@@ -9,5 +9,9 @@ module.exports = {
         'views': '@/views',
       }
     }
+  },
+  devServer: {
+    // proxy: 'http://localhost:8080',
+    public: 'http://localhost:8080'  // 本地ip
   }
 }
