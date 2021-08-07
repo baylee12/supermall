@@ -11,7 +11,16 @@ module.exports = {
     }
   },
   devServer: {
+    host: 'localhost',
+    port: 8080,
+    // 前端跨域方案
+    // proxy: {
+    //   '/backend': {
+    //     target: 'http://localhost:9000/api/m5',
+    //     pathRewrite: {'^/backend': ''}
+    //   }
+    // }
     // proxy: 'http://localhost:8080',
-    public: 'http://localhost:8080'  // 本地ip
+    // public: 'http://localhost:8080'  // 本地ip
   }
 }
