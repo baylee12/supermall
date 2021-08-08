@@ -1,6 +1,8 @@
 <template>
-  <div class="goods-item">
-    <img :src="goodItem.show.img" alt="" @load="imgLoad">
+  <div class="goods-item" @click="itemClick()">
+    <!--使用懒加载-->
+    <img v-lazy="getImg" alt="" @load="imgLoad">
+    <!--<img :src="getImg" alt="" @load="imgLoad">-->
     <div class="goods-info">
       <p>{{ goodItem.title }}</p>
       <span class="price">{{ goodItem.price }}</span>
@@ -20,10 +22,33 @@ export default {
       }
     }
   },
-  methods:{
+  methods: {
     //事件总线：跨组件通信
     imgLoad() {
       this.$bus.$emit('itemImageLoad');
+    },
+    itemClick() {
+
+      this.$router.push('/detail/' + this.goodItem.iid);
+      // this.$router.push({
+
+        // // query格式 get传参
+        // path: '/detail',
+        // query: {
+        //   id: this.goodItem.iid
+        // },
+
+        //params方式传参 name匹配 params 参数传递 post传参
+        // name:'Detail',
+        // params:{
+        //   abc: 123
+        // }
+      // });
+    }
+  },
+  computed:{
+    getImg() {
+      return this.goodItem.img || this.goodItem.image || this.goodItem.show.img
     }
   }
 }
